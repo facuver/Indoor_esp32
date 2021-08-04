@@ -1,6 +1,6 @@
 [MASTER]
 # Loaded Stubs: 
-init-hook='import sys;sys.path[1:1]=["src/lib",".micropy/Indoor_ESP32",  ]'
+init-hook='import sys;sys.path[1:1]=["src/lib",".micropy/Indoor_ESP32", "src/lib",".micropy/micropython-esp32-1_15" ]'
 
 [MESSAGES CONTROL]
 # Only show warnings with the listed confidence levels. Leave empty to show
