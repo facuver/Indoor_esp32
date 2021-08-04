@@ -1,0 +1,12 @@
+{
+    "python.linting.enabled": true,
+    "python.jediEnabled": false,
+
+    // Loaded Stubs: 
+    "python.autoComplete.extraPaths": [".micropy\\Indoor_ESP32"],
+    "python.autoComplete.typeshedPaths":  [".micropy\\Indoor_ESP32"],
+    "python.analysis.typeshedPaths":  [".micropy\\Indoor_ESP32"],
+
+    "python.linting.pylintEnabled": true,
+    "python.languageServer": "Microsoft"
+}
