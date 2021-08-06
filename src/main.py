@@ -1,17 +1,21 @@
 import uasyncio as asyncio
-from led import Led
-from machine import Pin
+from periferics import led
+import gc
+from web import app
 
-l = Led(Pin(2,Pin.OUT))
+
 
 async def main_loop():
+    while True:     
+        led.update()
+
+        await asyncio.sleep(5)
+
+async def gc_run():
     while True:
-        l.toggle()
-        await asyncio.sleep(0.2)
+        gc.collect()
+        await asyncio.sleep(0.5)
 
-
-
-
-main_task = asyncio.create_task(main_loop())
-
-asyncio.run_until_complete()
+if __name__ == "__main__":
+    main_task = asyncio.create_task(main_loop())
+    app.run(host="0.0.0.0",port=80,debug=True)

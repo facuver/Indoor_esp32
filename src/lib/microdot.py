@@ -297,6 +297,7 @@ class Response():
         if isinstance(body, (dict, list)):
             self.body = json.dumps(body).encode()
             self.headers['Content-Type'] = 'application/json'
+            self.headers["Access-Control-Allow-Origin"] = '*'
         elif isinstance(body, str):
             self.body = body.encode()
         else:
