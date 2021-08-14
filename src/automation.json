@@ -1,9 +1,1 @@
-{
-  "ligth": { "status": 0, "time_on": 5, "time_off": 2, "time": 0 },
-  "pump": 0,
-  "humidity": 0,
-  "soil_humidity": 0,
-  "water_reserve": 0,
-  "temp": 0,
-  "fans": { "status": 0, "duty": 0 }
-}
+{"fans": {"duty": 0, "status": 0}, "temp": 0,"soild_target" : 0 , "soil_humidity": 50, "ligth": {"time_off": 10, "status": 0, "time_on": 10, "time": 0}, "humidity": 0, "pump": 0, "water_reserve": 0}

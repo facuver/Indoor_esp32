@@ -1,7 +1,7 @@
 import ujson
 
 default = {'AP_password': 'test1234', 'AP_essid': 'iSpindel_Repeater', 'update_interval': '600', 'ubidots_token': '', 'STA_essid': '', 'STA_password': ''}
-automation_defaults = {"ligth" : {"status" : 0 , "time_on" : 0 , "time_off" : 0 , "time" : 0}  ,"pump" : 0, "humidity" : 0 , "soil_humidity" : 0 , "water_reserve" : 0 , "temp" : 0 , "fans" : {"status" : 0, "duty" : 0} }
+automation_defaults = {"ligth" : {"status" : 0 , "time_on" : 0 , "time_off" : 0 , "time" : 0}  ,"pump" : 0, "humidity" : 0 ,"soil_target":0, "soil_humidity" : 0 , "water_reserve" : 0 , "temp" : 0 , "fans" : {"status" : 0, "duty" : 0} }
 
 def read_configs():
     try:

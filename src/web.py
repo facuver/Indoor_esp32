@@ -33,8 +33,8 @@ async def danger(request):
 
 @app.get("/api/ifconfig")
 async def ifconfig(request):
-    status = list(interface.ifconfig())
-    return {"status": status}
+    return {"status": list(interface.ifconfig())}
+    
 
 
 @app.get("/api/scans")
@@ -66,8 +66,14 @@ async def home(request):
 async def update_auto(request):
     res = request.json
     print(res)
-    automation["ligth"]["time_on"] = res["ligth"]["time_on"] 
-    automation["ligth"]["time_off"] = res["ligth"]["time_off"] 
+    automation["ligth"]["time_on"] = int(res["time_on"]) 
+    automation["ligth"]["time_off"] = int(res["time_off"]) 
+    automation["soil_target"] = int(res["soil_target"])
     update_automation(automation)
     return "OK"
     
+
+@app.get("/api/status")
+async def status(request):
+    s = get_status()
+    return {"time_on" : s["ligth"]["time_on"], "time_off" : s["ligth"]["time_off"] ,"soil_target" : s["soil_target"]}
