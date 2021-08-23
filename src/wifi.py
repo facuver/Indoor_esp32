@@ -5,12 +5,13 @@ from cfg import configs
 
 interface = network.WLAN(network.STA_IF)
 
-ap = network.WLAN(network.AP_IF) # create access-point interface
-ap.config(essid=configs["AP_essid"], authmode = 4 , password = configs["AP_password"]) # set the ESSID of the access point
-ap.config(dhcp_hostname="esp32")
+ap = network.WLAN(network.AP_IF)  # create access-point interface
+ap.config(
+    essid=configs["AP_essid"], authmode=4, password=configs["AP_password"]
+)  # set the ESSID of the access point
 
 
-def do_connect(ssid,pwd):
+def do_connect(ssid, pwd):
     print("Connecting")
     if not ssid:
         print("Disconnecting")
@@ -18,15 +19,15 @@ def do_connect(ssid,pwd):
         return False
 
     interface.active(True)
-    interface.config(dhcp_hostname="indoor") 
+    interface.config(dhcp_hostname="indoor")
     interface.connect(ssid, pwd)
 
     for _ in range(15):
-        if interface.isconnected():      # check if the station is connected to an AP
-            print('\nnetwork config:', interface.ifconfig())
+        if interface.isconnected():  # check if the station is connected to an AP
+            print("\nnetwork config:", interface.ifconfig())
             print("Connect to: http://indoor.local")
             return True
-        print('.', end='')
+        print(".", end="")
         time.sleep(1)
     print(" Connect attempt timed out\n")
 
@@ -35,12 +36,8 @@ def do_connect(ssid,pwd):
     return False
 
 
-
-
-
 def do_create():
-    ap.active(True)         # activate the interface
-
+    ap.active(True)  # activate the interface
 
 
 def get_scans():
@@ -48,4 +45,3 @@ def get_scans():
     scans = interface.scan()
     scans = [i[0].decode("utf-8") for i in scans]
     return scans
-

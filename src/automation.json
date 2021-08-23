@@ -1,1 +1,11 @@
-{"fans": {"duty": 0, "status": 0}, "temp": 0,"soild_target" : 0 , "soil_humidity": 50, "ligth": {"time_off": 10, "status": 0, "time_on": 10, "time": 0}, "humidity": 0, "pump": 0, "water_reserve": 0}
+{
+  "fans": { "duty": 0, "status": 0 },
+  "temp": 0,
+  "soil_target": 0,
+  "soil_humidity": 50,
+  "ligth": { "time_off": 10, "status": 0, "time_on": 10, "time": 0 },
+  "humidity": 0,
+  "humidity_target": 60,
+  "pump": 0,
+  "water_reserve": 0
+}

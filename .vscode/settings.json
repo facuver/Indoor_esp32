@@ -8,5 +8,6 @@
     "python.analysis.typeshedPaths":  [".micropy\\Indoor_ESP32","src/lib",".micropy/micropython-esp32-1_15" ],
 
     "python.linting.pylintEnabled": true,
-    "python.languageServer": "Microsoft"
+    "python.languageServer": "Microsoft",
+    "python.linting.mypyEnabled": false
 }
