@@ -1,4 +1,4 @@
-from machine import PWM, Pin, ADC
+from machine import PWM, Pin, ADC, Signal
 import dht
 from cfg import automation, log
 from utime import ticks_ms, ticks_diff
@@ -10,7 +10,8 @@ def map_value(x, in_min, in_max, out_min, out_max):
 
 class Led:
     def __init__(self, pin, on=4, off=4, time=0):
-        self.pin = pin
+        self.pin = Signal(pin, invert=True)
+
         self.on_time = on
         self.off_time = off
         self.time = time
@@ -64,7 +65,7 @@ class Led:
 
 class Pump:
     def __init__(self, pin):
-        self.pin = pin
+        self.pin = Signal(pin)
 
     def on(self):
         if not self.value():
@@ -82,7 +83,7 @@ class Pump:
 
 class Fan:
     def __init__(self, pin):
-        self.pin = pin
+        self.pin = Signal(pin, invert=True)
 
     def on(self):
         if not self.value():
@@ -148,7 +149,7 @@ def get_status():
         "ligth": led.get_status(),
         "pump": pump.value(),
         "humidity": dht11.hum,
-        "humidity_target": 20,
+        "humidity_target": automation["humidity_target"],
         "soil_target": automation["soil_target"],
         "soil_humidity": soil.read(),
         "water_reserve": 0,

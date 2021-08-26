@@ -62,5 +62,6 @@ async def update_auto(request):
     automation["ligth"]["time_on"] = int(res["ligth"]["time_on"])
     automation["ligth"]["time_off"] = int(res["ligth"]["time_off"])
     automation["soil_target"] = int(res["soil_target"])
+    automation["humidity_target"] = int(res["humidity_target"])
     update_automation(automation)
     return "OK"

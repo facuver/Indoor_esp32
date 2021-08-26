@@ -1,6 +1,7 @@
 from cfg import configs
 import wifi
 import ntptime
+import periferics
 
 print(configs)
 
