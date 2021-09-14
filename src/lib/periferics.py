@@ -4,8 +4,8 @@ from cfg import automation, log
 from utime import ticks_ms, ticks_diff
 
 
-def map_value(x, in_min, in_max, out_min, out_max):
-    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+def map_value(value, in_min, in_max):
+    return ((value - in_min) * 100) / (in_max - in_min)
 
 
 class Led:
@@ -65,20 +65,22 @@ class Led:
 
 class Pump:
     def __init__(self, pin):
-        self.pin = Signal(pin)
+        self.pin = pin
+        self.pwm = PWM(self.pin, freq=200)
+        self.pwm.duty(0)
 
     def on(self):
         if not self.value():
             log("Pump ON")
-        self.pin.on()
+        self.pwm.duty(1000)
 
     def off(self):
         if self.value():
             log("Pump OFF")
-        self.pin.off()
+        self.pwm.duty(0)
 
     def value(self):
-        return self.pin.value()
+        return self.pwm.duty()
 
 
 class Fan:
@@ -100,22 +102,16 @@ class Fan:
 
 
 class SoilProbe:
-    def __init__(self, pin, in_min=350, in_max=900, out_min=95, out_max=5):
+    def __init__(self, pin, in_min=340, in_max=900):
         self.pin = pin
         self.adc = ADC(self.pin)
         self.adc.width(ADC.WIDTH_10BIT)
         self.adc.atten(ADC.ATTN_11DB)
         self.in_min = in_min
         self.in_max = in_max
-        self.out_min = out_min
-        self.out_max = out_max
 
     def read(self):
-        return int(
-            map_value(
-                self.adc.read(), self.in_min, self.in_max, self.out_min, self.out_max
-            )
-        )
+        return 100 - int(map_value(self.adc.read(), self.in_min, self.in_max))
 
     def read_raw(self):
         return self.adc.read()
@@ -149,7 +145,7 @@ def get_status():
         "ligth": led.get_status(),
         "pump": pump.value(),
         "humidity": dht11.hum,
-        "humidity_target": automation["humidity_target"],
+        "temperature_target": automation["temperature_target"],
         "soil_target": automation["soil_target"],
         "soil_humidity": soil.read(),
         "water_reserve": 0,
@@ -164,7 +160,7 @@ led = Led(
     off=automation["ligth"]["time_off"],
     time=automation["ligth"]["time"],
 )
-pump = Pump(Pin(4, Pin.OUT))
+pump = Pump(Pin(4))
 dht11 = AirSensor(Pin(14))
-soil = SoilProbe(Pin(33), 13)
+soil = SoilProbe(Pin(33))
 fan = Fan(Pin(18, Pin.OUT))
