@@ -1,10 +1,10 @@
 import uasyncio as asyncio
-from lib.periferics import led, soil, pump, dht11, fan, get_status
+from src.lib.periferics import led, soil, pump, dht11, fan, get_status
 import gc
 import urequests as requests
-from lib.web import app
+from src.lib.web import app
 import wifi
-from lib.cfg import automation, log, configs, format_time
+from src.lib.cfg import automation, log, configs, format_time
 
 
 def soil_update():
@@ -93,7 +93,7 @@ async def update_data():
             log("Fail to send data")
 
 
-def start(env, time, logger):
+def start(env, urequest, logger, time):
     if __name__ == "__main__":
         log("Starting Server")
         main_task = asyncio.create_task(every_minute())
