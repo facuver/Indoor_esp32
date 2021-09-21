@@ -1,10 +1,10 @@
 import uasyncio as asyncio
-from periferics import led, soil, pump, dht11, fan, get_status
+from lib.periferics import led, soil, pump, dht11, fan, get_status
 import gc
 import urequests as requests
-from web import app
+from lib.web import app
 import wifi
-from cfg import automation, log, configs, format_time
+from lib.cfg import automation, log, configs, format_time
 
 
 def soil_update():
