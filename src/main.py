@@ -93,13 +93,11 @@ async def update_data():
             log("Fail to send data")
 
 
-def start():
-    
-    log("Starting Server")
-    main_task = asyncio.create_task(every_minute())
-    second_task = asyncio.create_task(every_second())
-    # update_task = asyncio.create_task(update_data())
+log("Starting Server")
+main_task = asyncio.create_task(every_minute())
+second_task = asyncio.create_task(every_second())
+# update_task = asyncio.create_task(update_data())
 
-    check_connection = asyncio.create_task(check_connection())
-    app.run(host="0.0.0.0", port=80, debug=True)
+check_connection = asyncio.create_task(check_connection())
+app.run(host="0.0.0.0", port=80, debug=True)
 
