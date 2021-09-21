@@ -4,7 +4,7 @@ import gc
 import urequests as requests
 from src.lib.web import app
 import wifi
-from src.lib.cfg import automation, log, configs, format_time
+from .cfg import automation, log, configs, format_time
 
 
 def soil_update():
