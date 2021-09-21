@@ -1,6 +1,6 @@
 from machine import PWM, Pin, ADC, Signal
 import dht
-from src.lib.cfg import automation, log
+from .cfg import automation, log
 from utime import ticks_ms, ticks_diff
 
 
