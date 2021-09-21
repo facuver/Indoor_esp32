@@ -1,7 +1,7 @@
-import uasyncio as asyncio
+import .lib.uasyncio as asyncio
 from src.lib.periferics import led, soil, pump, dht11, fan, get_status
 import gc
-import urequests as requests
+import .lib.urequests as requests
 from src.web import app
 import wifi
 from src.cfg import automation, log, configs, format_time
